@@ -2,9 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const categories = [
-  { name: 'Men', image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80', link: '/shop?cat=men' },
-  { name: 'Women', image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80', link: '/shop?cat=women' },
-  { name: 'Accessories', image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80', link: '/shop?cat=accessories' },
+  { name: 'Shorts', image: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80', link: '/shop?cat=shorts' },
+  { name: 'Jeans', image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80', link: '/shop?cat=jeans' },
+  { name: 'T-Shirts', image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80', link: '/shop?cat=tshirts' },
+  { name: 'Shirts', image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80', link: '/shop?cat=shirts' },
+  { name: 'Dresses', image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80', link: '/shop?cat=dresses' },
+  { name: 'Shoes', image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80', link: '/shop?cat=shoes' },
+  { name: 'Heels', image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80', link: '/shop?cat=heels' },
 ]
 
 const featuredProducts = [
