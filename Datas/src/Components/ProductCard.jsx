@@ -2,19 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const ProductCard = ({ product }) => (
-  <div className="border rounded-lg shadow p-4 flex flex-col items-center">
+  <div className="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center">
     <img
       src={product.image}
       alt={product.name}
-      className="w-32 h-32 object-cover mb-2"
+      className="w-40 h-40 object-cover mb-2 rounded"
     />
-    <h3 className="text-lg font-semibold mb-1">{product.name}</h3>
+    <h3 className="text-lg font-semibold mb-1 text-center">{product.name}</h3>
     <p className="text-gray-600 mb-2">${product.price}</p>
     <Link
       to={`/products/${product.id}`}
-      className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
+      className="bg-black text-white px-4 py-1 rounded hover:bg-gray-800 transition"
     >
-      View Details
+      View
     </Link>
   </div>
 )
