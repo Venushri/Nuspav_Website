@@ -21,14 +21,14 @@ const Input = () => {
 const StyledWrapper = styled.div`
   .container {
     position: relative;
-    background: linear-gradient(135deg, rgb(179, 208, 253) 0%, rgb(164, 202, 248) 100%);
+    background: linear-gradient(135deg, #D69ADE 0%, #D69ADE 100%); /* New border color */
     border-radius: 1000px;
-    padding: 4px; /* reduce vertical padding */
+    padding: 4px;
     display: grid;
     place-content: center;
     z-index: 0;
-    max-width: 320px; /* increase width */
-    width: 260px;     /* set a wider width */
+    max-width: 320px;
+    width: 260px;
     margin: 0 5px;
   }
 
@@ -36,32 +36,37 @@ const StyledWrapper = styled.div`
     position: relative;
     width: 100%;
     border-radius: 50px;
-    background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
-    padding: 2px; /* reduce vertical padding */
+    background: #FFDFEF; /* New inside background */
+    padding: 2px;
     display: flex;
     align-items: center;
   }
 
   .input {
-    padding: 4px 25px; /* reduce height, keep horizontal padding */
+    padding: 4px 25px;
     width: 100%;
-    background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
+    background: #FFDFEF; /* Match input to container background */
     border: none;
-    color: #9EBCD9;
+    color: black;
     font-size: 15px;
     border-radius: 50px;
-    height: 32px; /* set a fixed, smaller height */
+    height: 32px;
+  }
+
+  .input::placeholder {
+    color: #D69ADE; /* Soft border color for placeholder text */
+    opacity: 0.8;
   }
 
   .input:focus {
     outline: none;
-    background: linear-gradient(135deg, rgb(239, 247, 255) 0%, rgb(214, 229, 247) 100%);
+    background: #FFF0F7; /* Lighter pink focus background */
   }
 
   .search__icon {
     width: 22px;
     aspect-ratio: 1;
-    border-left: 2px solid white;
+    border-left: 2px solid #D69ADE;
     border-top: 3px solid transparent;
     border-bottom: 3px solid transparent;
     border-radius: 50%;
@@ -70,11 +75,11 @@ const StyledWrapper = styled.div`
   }
 
   .search__icon:hover {
-    border-left: 3px solid white;
+    border-left: 3px solid #D69ADE;
   }
 
   .search__icon path {
-    fill: white;
+    fill: #D69ADE;
   }
 `
 

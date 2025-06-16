@@ -6,7 +6,7 @@ import Input from './Input'
 const Header = () => (
   <header
     className="w-full shadow-md shadow-gray-700/30 py-2 px-6 mb-4"
-    style={{ backgroundColor: "#0B1D51" }}
+    style={{ backgroundColor: "#7B007B" }}
   >
     <div className="w-full flex items-center justify-between">
       <Link to="/" className="text-2xl font-bold text-gray-800 tracking-wide flex items-center gap-2 pl-2">

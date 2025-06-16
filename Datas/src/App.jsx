@@ -2,7 +2,6 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
-import ProductCard from './Components/ProductCard'
 import Home from './Pages/Home'
 import ProductList from './Pages/ProductList'
 import ProductDetail from './Pages/ProductDetail'
@@ -13,12 +12,13 @@ import Register from './Pages/Register'
 import Profile from './Pages/Profile'
 import Shop from './Pages/Shop'
 import Collections from './Pages/Collections'
+import { CartProvider } from './Context/CartContext' // ✅ context import
 
 import './App.css'
 
 function App() {
   return (
-    <>
+    <CartProvider>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -33,7 +33,7 @@ function App() {
         <Route path="/collections" element={<Collections />} />
       </Routes>
       <Footer />
-    </>
+    </CartProvider>
   )
 }
 
