@@ -19,6 +19,7 @@ import shoe1Img from '../assets/shoe1.jpg'
 import shirt1Img from '../assets/shirt1.jpg'
 import tshirt1Img from '../assets/tshirt1.jpg'
 import sunglasses1Img from '../assets/sunglasses1.jpg'
+import jewellery1Img from '../assets/jewellery1.jpg'
 
 const categories = [
   { name: 'Dresses', link: '/shop?cat=Dresses' },
@@ -31,7 +32,8 @@ const categories = [
   { name: 'T-Shirts', link: '/shop?cat=T-Shirts' },
   { name: 'Heels', link: '/shop?cat=Heels' },
   { name: 'Hats', link: '/shop?cat=Hats' },
-  { name: 'Sunglasses', link: '/shop?cat=Sunglasses' }
+  { name: 'Sunglasses', link: '/shop?cat=Sunglasses' },
+  { name: 'Jewelry', link: '/shop?cat=Jewelry' },
 ]
 
 const collections = [
@@ -107,6 +109,12 @@ const addOns = [
     link: '/shop?cat=Accessories'
   },
   {
+    title: 'Jewelry',
+    description: 'Beautiful jewelry to sparkle to your outfit.',
+    image: jewellery1Img,
+    link: '/shop?cat=Jewelry'
+  },
+  {
     title: 'Bags',
     description: 'Trendy bags for every occasion.',
     image: bag1Img,
@@ -130,12 +138,12 @@ const addOns = [
     image: hat1Img,
     link: '/shop?cat=Hats'
   },
-   {
+  {
     title: 'Sunglasses',
-    description: 'Trendy sunglasses to protect your eyes in style.',
+    description: 'Trendy sunglasses to protect your eyes.',
     image: sunglasses1Img,
     link: '/shop?cat=Sunglasses'
-   }
+  }
 ]
 
 const gradientTextStyle = {
@@ -154,24 +162,10 @@ const boxStyle = "bg-yellow-100 shadow rounded-lg p-6 flex flex-col items-center
 const boxTitleStyle = "text-xl font-bold mb-2";
 
 const Collections = () => (
-  <div className="w-full flex-1 bg-gray-50 py-12 flex flex-row items-start gap-8 px-8">
-    <aside className="w-56 bg-pink-100 shadow p-4 flex flex-col gap-2" style={{ marginTop: '120px', height: '700px', justifyContent: 'flex-start' }}>
-      <h3 className="text-lg font-bold mb-2" style={{ color: '#8d6748' }}>Categories</h3>
-      {categories.map(cat => (
-        <Link
-          key={cat.name}
-          to={cat.link}
-          className="px-4 py-2 rounded font-medium transition"
-          style={{ color: '#b29982' }}
-          onMouseOver={e => (e.target.style.color = '#8d6748')}
-          onMouseOut={e => (e.target.style.color = '#b29982')}
-        >
-          {cat.name}
-        </Link>
-      ))}
-    </aside>
-    <div className="flex-1 flex flex-col items-center">
-      <h2 className="text-4xl font-extrabold mb-10 text-gray-900 text-center tracking-widest uppercase" style={{ letterSpacing: '0.2em' }}>
+  <div className="w-full flex-1 bg-gray-50 py-12 flex flex-col items-center gap-8 px-8">
+    <div className="flex-1 flex flex-col items-center" style={{minHeight:'900px', justifyContent:'flex-start'}}>
+      <h2 className="text-4xl font-extrabold mb-10 text-center tracking-widest uppercase"
+        style={{ letterSpacing: '0.2em', color: '#ec4899' }}>
         Our Collections
       </h2>
       <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
@@ -226,19 +220,92 @@ const Collections = () => (
           )
         )}
       </HTMLFlipBook>
-      <h3 className="text-2xl font-bold mt-10 mb-6 text-gray-800">Complete Your Look</h3>
-      <div className="grid grid-cols-6 gap-4 max-w-6xl w-full justify-start items-start" style={{marginLeft:0}}>
-        {addOns.map(item => (
-          <div key={item.title} className="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center w-full" style={{minWidth:'120px', maxWidth:'180px'}}>
-            <img src={item.image} alt={item.title} className="h-32 w-32 object-cover rounded mb-2" />
-            <h4 className="font-bold text-base mb-1 text-center">{item.title}</h4>
-            <p className="text-xs text-gray-600 mb-2 text-center">{item.description}</p>
-            <Link to={item.link} className="bg-black text-white px-3 py-1 text-xs rounded hover:bg-gray-800">
-              Explore →
-            </Link>
-          </div>
-        ))}
-      </div>
+      <div style={{height:'40px'}}></div>
+      {/* Style Your Look section below flipbook and categories */}
+      <div style={{ height: '40px' }}></div>
+      <section
+        style={{
+          position: 'relative',
+          left: '20px', // move section a little to the right
+          width: 'calc(100% - 20px)', // compensate for right shift
+          background: 'linear-gradient(90deg, #fffbe7 60%, #ffe3ec 100%)',
+          borderRadius: '22px',
+          boxShadow: '0 4px 24px 0 rgba(200, 24, 91, 0.10)',
+          padding: '32px 18px 28px 18px',
+          margin: '0 0 32px 0',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          minWidth: '0',
+          maxWidth: '1300px',
+        }}
+      >
+        <h3
+          style={{
+            fontFamily: 'Times New Roman, Times, serif',
+            fontSize: '2.1rem',
+            fontWeight: 'bold',
+            background: 'linear-gradient(90deg, #c2185b 40%, #006400 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            marginBottom: '1.2rem',
+            textAlign: 'center', // center the heading
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            width: '100%',
+            alignSelf: 'center', // center in flex
+          }}
+        >
+          Style Your Look
+        </h3>
+        <div
+          className="flex flex-row gap-4 items-stretch flex-nowrap"
+          style={{
+            width: '100%',
+            flexWrap: 'nowrap',
+            justifyContent: 'flex-start',
+            alignSelf: 'flex-start',
+            overflow: 'visible',
+            maxWidth: '1300px',
+            paddingBottom: '0',
+          }}
+        >
+          {addOns.map(item => (
+            <div
+              key={item.title}
+              className="bg-white rounded-xl shadow p-4 flex flex-col items-center justify-between"
+              style={{
+                minWidth: '140px',
+                maxWidth: '150px',
+                height: '230px',
+                flex: '1 1 0',
+                margin: '0 8px 0 0',
+                boxSizing: 'border-box',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                className="object-cover rounded mb-2"
+                style={{ objectFit: 'cover', width: '90px', height: '90px' }}
+              />
+              <h4 className="font-bold text-base mb-1 text-center" style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'100%'}}>{item.title}</h4>
+              <p className="text-sm text-gray-600 mb-2 text-center" style={{overflow:'hidden',textOverflow:'ellipsis',display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',maxWidth:'100%'}}>{item.description}</p>
+              <Link
+                to={item.link}
+                className="bg-black text-white px-3 py-1 text-sm rounded hover:bg-gray-800"
+                style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'100%',textAlign:'center'}}
+              >
+                Explore →
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   </div>
 )
