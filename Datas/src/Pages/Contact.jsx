@@ -4,10 +4,12 @@ import HelpContent from '../Components/HelpContent';
 import { useAuth } from '../Context/AuthContext';
 import { motion } from 'framer-motion';
 import { Info, LogIn, PhoneCall } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'; // <-- Add this import
 
 const Contact = () => {
   const [selected, setSelected] = useState('order');
-  const { isAuthenticated } = useAuth(); // optional
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate(); // <-- Add this line
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-teal-50 px-6 py-12">
@@ -60,7 +62,10 @@ const Contact = () => {
                       Secure access to your orders
                     </span>
                   </p>
-                  <button className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-black font-semibold py-2 px-6 rounded-lg shadow">
+                  <button
+                    className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-black font-semibold py-2 px-6 rounded-lg shadow"
+                    onClick={() => navigate('/login')} // <-- Add this handler
+                  >
                     <LogIn className="w-5 h-5" />
                     LOG IN
                   </button>

@@ -59,7 +59,7 @@ const SignupPage = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-pink-500 to-teal-500 text-white font-semibold py-2 rounded-lg shadow-md hover:opacity-90 transition"
+            className="w-full bg-gradient-to-r from-pink-300 to-teal-300 text-white font-semibold py-2 rounded-lg shadow-md hover:opacity-90 transition"
           >
             Sign Up
           </button>

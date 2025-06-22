@@ -62,7 +62,12 @@ const ProfileDropdown = () => {
           <ul className="text-sm py-2">
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/coming-soon')}>My Profile</li>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/coming-soon')}>Orders</li>
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/coming-soon')}>Wishlist</li>
+            <li
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              onClick={() => handleLinkClick('/wishlist')}
+            >
+              Wishlist
+            </li>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/coming-soon')}>Gift Cards</li>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/coming-soon')}>Coupons</li>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/coming-soon')}>Saved Addresses</li>
