@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../Context/CartContext'; 
-// import { useAuth } from '../Context/AuthContext'; // <-- Make sure this exists
+import { useAuth } from '../Context/AuthContext'; // <-- Make sure this exists
 import teeImg from '../assets/tee.jpg';
 import jacketImg from '../assets/jacket.jpg';
 import shortsImg from '../assets/shorts.jpg';
@@ -75,4 +75,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail
+export default ProductDetail;
