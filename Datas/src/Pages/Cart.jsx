@@ -60,6 +60,12 @@ const Cart = () => {
               >
                 Remove
               </button>
+              <button
+                onClick={() => window.location.href = '/login'}
+                className="mt-1 bg-black text-red px-4 py-2 rounded font-semibold hover:bg-green-700 transition"
+              >
+                Login to Purchase
+              </button>
             </div>
           </div>
         ))}
@@ -68,7 +74,7 @@ const Cart = () => {
       <div className="mt-8 text-right">
         <p className="text-xl font-bold mb-4">Total: ${totalPrice.toFixed(2)}</p>
         <Link
-          to="/checkout"
+          to="/login"
           className="inline-block bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition"
         >
           Proceed to Checkout
