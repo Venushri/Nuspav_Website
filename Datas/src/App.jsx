@@ -17,7 +17,7 @@ import ComingSoon from './Pages/ComingSoon';
 import Wishlist from './Pages/Wishlist';
 import Contact from './Pages/Contact';
 import { AuthProvider } from './Context/AuthContext';
-
+import { ProductActionsProvider } from './Context/ProductActionsContext';
 
 import './App.css'
 
@@ -25,6 +25,7 @@ function App() {
   return (
       <AuthProvider>
       <CartProvider>
+        <ProductActionsProvider>
         <Header />
        
           <div className="pt-18 px-2"> 
@@ -46,6 +47,7 @@ function App() {
         </div>
 
         <Footer />
+        </ProductActionsProvider>
       </CartProvider>
     </AuthProvider>
   );

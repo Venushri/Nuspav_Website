@@ -1,7 +1,4 @@
 import React from 'react';
-// import LoginModal from '../Components/LoginModal';
-// import RegisterModal from '../Components/RegisterModal';
-// import { useAuthModal } from '../Context/AuthModalContext';
 import { Link } from 'react-router-dom';
 import HeroSlider from '../Components/HeroSlider';
 import Nuspav from '../Components/Nuspav';
@@ -9,6 +6,8 @@ import thriftImage from '../assets/Nuspav7.jpg';
 import teeImg from '../assets/tee.jpg';
 import jacketImg from '../assets/jacket.jpg';
 import shortsImg from '../assets/shorts.jpg';
+import { CiHeart, CiShoppingCart } from 'react-icons/ci';
+import { useProductActions } from '../Context/ProductActionsContext';
 
 const featuredProducts = [
   { id: 1, name: 'Vintage Tee', price: 5.99, image: teeImg },
@@ -22,13 +21,13 @@ const testimonials = [
 ];
 
 const Home = () => {
-//   const { openLogin, openRegister } = useAuthModal();
+  const { wishlist, cart, handleWishlist, handleAddToCart } = useProductActions();
 
   return (
     <div className="w-full bg-gray-50 text-gray-800">
-  <HeroSlider /> 
+      <HeroSlider />
 
-{/* Why Shop Thrift */}
+      {/* Why Shop Thrift */}
       <section className="py-16 px-6 md:px-16 bg-white text-center">
         <h2 className="text-4xl font-bold mb-10" style={{ fontFamily: "'Playfair Display', serif" }}>
           Why Shop Thrift?
@@ -74,12 +73,44 @@ const Home = () => {
       <section className="py-16 px-6 md:px-16 bg-white">
         <h2 className="text-3xl font-bold text-center mb-10">Featured Finds</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-          {featuredProducts.map(p => (
-            <div key={p.id} className="bg-gray-100 rounded-xl shadow p-4 text-center hover:shadow-lg transition">
-              <img src={p.image} alt={p.name} className="w-40 h-40 mx-auto object-cover mb-4 rounded" />
-              <h3 className="font-semibold text-lg">{p.name}</h3>
-              <p className="text-gray-600 mb-2">${p.price}</p>
-              <Link to={`/products/${p.id}`} className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
+          {featuredProducts.map(product => (
+            <div key={product.id} className="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+              <img src={product.image} alt={product.name} className="w-52 h-52 object-cover mb-2 rounded" />
+              <h3 className="text-lg font-semibold mb-1 text-center">{product.name}</h3>
+              <p className="text-gray-600 mb-2">${product.price}</p>
+              <div className="flex gap-4 mb-2 bg-purple-100 rounded-lg p-2">
+                <button
+                  title="Add to Wishlist"
+                  type="button"
+                  onClick={() => handleWishlist(product)}
+                  className={`bg-white p-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-xl ${
+                    wishlist.includes(product.id) ? 'text-pink-600' : 'text-black'
+                  }`}
+                  style={{
+                    color: wishlist.includes(product.id) ? '#db2777' : '#000',
+                    backgroundColor: '#fff',
+                    borderColor: '#e5e7eb'
+                  }}
+                >
+                  <CiHeart />
+                </button>
+                <button
+                  title="Add to Cart"
+                  type="button"
+                  onClick={() => handleAddToCart(product)}
+                  className={`bg-white p-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-xl ${
+                    cart.includes(product.id) ? 'text-green-600' : 'text-black'
+                  }`}
+                  style={{
+                    color: cart.includes(product.id) ? '#059669' : '#000',
+                    backgroundColor: '#fff',
+                    borderColor: '#e5e7eb'
+                  }}
+                >
+                  <CiShoppingCart />
+                </button>
+              </div>
+              <Link to={`/products/${product.id}`} className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
                 View
               </Link>
             </div>

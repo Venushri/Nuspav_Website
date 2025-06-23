@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { CiHeart, CiShoppingCart } from 'react-icons/ci'
 import bluejeansImg from '../assets/bluejeans.jfif'
+import { useProductActions } from '../Context/ProductActionsContext';
 import jeans2Img from '../assets/jeans2.jfif'
 import jeans3Img from '../assets/jeans3.jfif'
 import jeans4Img from '../assets/jeans4.jfif'
@@ -66,6 +67,7 @@ import jewellery2Img from '../assets/jewellery2.jpg'
 import sunglasses1Img from '../assets/sunglasses1.jpg'
 import sunglasses2Img from '../assets/sunglasses2.jpg'
 import sunglasses3Img from '../assets/sunglasses3.jpg'
+import { useCart } from '../Context/CartContext'; // Make sure this import is present
 
 const placeholderImg = "https://via.placeholder.com/300x300?text=No+Image"
 
@@ -183,6 +185,10 @@ const Shop = () => {
   const [showColour, setShowColour] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
+  const { wishlist, cart, handleWishlist, handleAddToCart } = useProductActions();
+  const { addToCart } = useCart(); // Use the context
+
+  const isLoggedIn = !!localStorage.getItem('user'); // Or use your auth context
 
   // Handle query param for category selection
   useEffect(() => {
@@ -217,19 +223,19 @@ const Shop = () => {
 
   return (
     <div className="w-full flex-1 bg-gray-50 py-12 flex flex-col gap-8 px-8">
-      <h2 className="text-3xl font-bold mb-6 text-pink-600 text-center">Shop All Products</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center" style={{ color: '#5C4032' }}>Shop All Products</h2>
       <div className="flex flex-wrap gap-4 mb-8 justify-center">
         <button
-          className="bg-green-200 text-green-900 px-4 py-2 rounded font-semibold hover:bg-green-300 transition"
-          style={{ backgroundColor: '#bbf7d0', color: '#166534' }}
+          className="px-4 py-2 rounded font-semibold transition"
+          style={{ backgroundColor: '#FFDFEF', color: '#000' }}
           onClick={() => navigate('/collections')}
         >
           View Collections
         </button>
         <div className="relative">
           <button
-            className="px-4 py-2 bg-green-200 rounded font-medium text-green-900 flex items-center gap-2"
-            style={{ backgroundColor: '#bbf7d0', color: '#166534' }}
+            className="px-4 py-2 rounded font-medium flex items-center gap-2 transition"
+            style={{ backgroundColor: '#FFDFEF', color: '#000' }}
             onClick={() => setShowCategory((v) => !v)}
             type="button"
           >
@@ -242,7 +248,7 @@ const Shop = () => {
               {categories.map((cat) => (
                 <button
                   key={cat}
-                  className={`block w-full text-left px-4 py-2 hover:bg-green-100 ${selectedCategory === cat ? 'bg-green-100 text-black font-bold' : ''}`}
+                  className={`block w-full text-left px-4 py-2 hover:bg-white ${selectedCategory === cat ? 'bg-green-100 text-black font-bold' : ''}`}
                   style={{ color: '#000', backgroundColor: '#bbf7d0' }}
                   onClick={() => {
                     setSelectedCategory(cat)
@@ -257,8 +263,8 @@ const Shop = () => {
         </div>
         <div className="relative">
           <button
-            className="px-4 py-2 bg-green-200 rounded font-medium text-green-900 flex items-center gap-2"
-            style={{ backgroundColor: '#bbf7d0', color: '#166534' }}
+            className="px-4 py-2 rounded font-medium flex items-center gap-2 transition"
+            style={{ backgroundColor: '#FFDFEF', color: '#000' }}
             onClick={() => setShowDiscount((v) => !v)}
             type="button"
           >
@@ -296,8 +302,8 @@ const Shop = () => {
         </div>
         <div className="relative">
           <button
-            className="px-4 py-2 bg-green-200 rounded font-medium text-green-900 flex items-center gap-2"
-            style={{ backgroundColor: '#bbf7d0', color: '#166534' }}
+            className="px-4 py-2 rounded font-medium flex items-center gap-2 transition"
+            style={{ backgroundColor: '#FFDFEF', color: '#000' }}
             onClick={() => setShowSize((v) => !v)}
             type="button"
           >
@@ -335,8 +341,8 @@ const Shop = () => {
         </div>
         <div className="relative">
           <button
-            className="px-4 py-2 bg-green-200 rounded font-medium text-green-900 flex items-center gap-2"
-            style={{ backgroundColor: '#bbf7d0', color: '#166534' }}
+            className="px-4 py-2 rounded font-medium flex items-center gap-2 transition"
+            style={{ backgroundColor: '#FFDFEF', color: '#000' }}
             onClick={() => setShowColour((v) => !v)}
             type="button"
           >
@@ -391,12 +397,39 @@ const Shop = () => {
               <h3 className="text-lg font-semibold mb-1 text-center">{product.name}</h3>
               <p className="text-gray-600 mb-2">₹{product.price}</p>
               <div className="flex gap-4 mb-2 bg-purple-100 rounded-lg p-2">
-                <button title="Add to Wishlist" type="button" className="bg-white text-black p-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-xl" style={{ color: '#000', backgroundColor: '#fff', borderColor: '#e5e7eb' }}><CiHeart /></button>
-                <button title="Add to Cart" type="button" className="bg-white text-black p-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-xl" style={{ color: '#000', backgroundColor: '#fff', borderColor: '#e5e7eb' }}><CiShoppingCart /></button>
+                <button
+                  title="Add to Wishlist"
+                  type="button"
+                  onClick={() => {
+                    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                    const exists = wishlist.some(item => item.id === product.id);
+                    if (!exists) {
+                      wishlist.push(product);
+                      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    }
+                    navigate('/wishlist'); // Redirect to wishlist page
+                  }}
+                  className="bg-white text-black p-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-xl"
+                  style={{ color: '#000', backgroundColor: '#fff', borderColor: '#e5e7eb' }}
+                >
+                  <CiHeart />
+                </button>
+                <button
+                  title="Add to Cart"
+                  type="button"
+                  onClick={() => {
+                    addToCart(product); // Use context function
+                    navigate('/cart');
+                  }}
+                  className="bg-white text-black p-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-xl"
+                  style={{ color: '#000', backgroundColor: '#fff', borderColor: '#e5e7eb' }}
+                >
+                  <CiShoppingCart />
+                </button>
               </div>
               <button
-                className="bg-pink-100 text-black px-4 py-1 rounded font-semibold border border-pink-200 hover:bg-pink-200 transition"
-                style={{ color: '#000', backgroundColor: '#fce7f3', borderColor: '#fbcfe8' }}
+                className="bg-black text-white px-4 py-1 rounded font-semibold border border-black hover:bg-gray-800 transition"
+                style={{ backgroundColor: '#000', color: '#fff', borderColor: '#000' }}
                 onClick={() => setSelectedProduct(product)}
                 type="button"
               >
@@ -409,8 +442,15 @@ const Shop = () => {
         )}
       </div>
       {selectedProduct && (
-        <div className="fixed inset-0 bg-white bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-purple-100 shadow-lg p-4 sm:p-5 max-w-xs w-full relative border-2 border-purple-300 flex flex-col items-center">
+        <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
+          <div
+            className="shadow-2xl p-6 sm:p-8 max-w-xs w-full relative border-2 flex flex-col items-center rounded-xl"
+            style={{
+              background: 'linear-gradient(135deg, #fff 80%, #ffe9eb 100%)',
+              borderColor: '#fbcfe8',
+              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)'
+            }}
+          >
             <button
               className="absolute top-2 right-2 text-purple-700 border border-purple-200 bg-purple-100 hover:bg-purple-200 px-2 py-1 rounded-full text-2xl font-bold transition"
               style={{ backgroundColor: '#ede9fe', color: '#7c3aed', borderColor: '#ddd6fe' }}
@@ -427,8 +467,35 @@ const Shop = () => {
             <h3 className="text-2xl font-bold mb-2 text-center text-black">{selectedProduct.name}</h3>
             <p className="mb-2 text-center text-black">₹{selectedProduct.price}</p>
             <div className="flex gap-4 mb-2 justify-center bg-purple-100 rounded-lg p-2">
-              <button title="Add to Wishlist" type="button" className="bg-pink-100 text-black p-2 rounded-full border border-pink-200 hover:bg-pink-200 transition text-xl" style={{ color: '#000', backgroundColor: '#fce7f3', borderColor: '#fbcfe8' }}><CiHeart /></button>
-              <button title="Add to Cart" type="button" className="bg-pink-100 text-black p-2 rounded-full border border-pink-200 hover:bg-pink-200 transition text-xl" style={{ color: '#000', backgroundColor: '#fce7f3', borderColor: '#fbcfe8' }}><CiShoppingCart /></button>
+              <button
+                title="Add to Wishlist"
+                type="button"
+                onClick={() => {
+                  const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                  const exists = wishlist.some(item => item.id === selectedProduct.id);
+                  if (!exists) {
+                    wishlist.push(selectedProduct);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                  }
+                  navigate('/wishlist'); // Direct to wishlist page
+                }}
+                className="bg-white text-black p-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-xl"
+                style={{ color: '#000', backgroundColor: '#fff', borderColor: '#e5e7eb' }}
+              >
+                <CiHeart />
+              </button>
+              <button
+                title="Add to Cart"
+                type="button"
+                onClick={() => {
+                  addToCart(selectedProduct);
+                  navigate('/cart'); // Direct to cart page
+                }}
+                className="bg-white text-black p-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-xl"
+                style={{ color: '#000', backgroundColor: '#fff', borderColor: '#e5e7eb' }}
+              >
+                <CiShoppingCart />
+              </button>
             </div>
             <p className="mb-2 text-center text-black">{selectedProduct.description}</p>
             <p className="mb-2 text-center text-black">Colour: {selectedProduct.colour}</p>
