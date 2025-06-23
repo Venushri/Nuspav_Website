@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Header from './Components/Header'
+import Footer from './Components/Footer'
+import Home from './Pages/Home'
+import ProductList from './Pages/ProductList'
+import ProductDetail from './Pages/ProductDetail'
+import Cart from './Pages/Cart'
+import Checkout from './Pages/CheckOut'
+import LoginPage from './Pages/LoginPage'
+import SignupPage from './Pages/SignupPage'
+import Profile from './Pages/Profile'
+import Shop from './Pages/Shop'
+import Collections from './Pages/Collections'
+import { CartProvider } from './Context/CartContext' 
+import ComingSoon from './Pages/ComingSoon';
+import Wishlist from './Pages/Wishlist';
+import Contact from './Pages/Contact';
+import { AuthProvider } from './Context/AuthContext';
+import { ProductActionsProvider } from './Context/ProductActionsContext';
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <AuthProvider>
+      <CartProvider>
+        <ProductActionsProvider>
+        <Header />
+       
+          <div className="pt-18 px-2"> 
+          <Routes>
+            <Route path="/coming-soon" element={<ComingSoon />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<ProductList />} />
+            <Route path="/products/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/collections" element={<Collections />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
+
+        <Footer />
+        </ProductActionsProvider>
+      </CartProvider>
+    </AuthProvider>
+  );
 }
 
 export default App
