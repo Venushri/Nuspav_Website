@@ -217,7 +217,7 @@ const Shop = () => {
 
   return (
     <div className="w-full flex-1 bg-gray-50 py-12 flex flex-col gap-8 px-8">
-      <h2 className="text-3xl font-bold mb-6 text-pink-600 text-center">Shop All Products</h2>
+      <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">Shop All Products</h2>
       <div className="flex flex-wrap gap-4 mb-8 justify-center">
         <button
           className="bg-green-200 text-green-900 px-4 py-2 rounded font-semibold hover:bg-green-300 transition"

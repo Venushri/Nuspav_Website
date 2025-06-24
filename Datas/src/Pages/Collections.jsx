@@ -31,7 +31,6 @@ const categories = [
   { name: 'Summer Collection', link: '/shop?cat=Summer' },
   { name: 'Autumn Collection', link: '/shop?cat=Autumn' },
   { name: 'Winter Collection', link: '/shop?cat=Winter' },
-  { name: 'Bags Collection', link: '/shop?cat=Bags' },
   { name: 'Shoes', link: '/shop?cat=Shoes' },
   { name: 'Shirts', link: '/shop?cat=Shirts' },
   { name: 'T-Shirts', link: '/shop?cat=T-Shirts' },
@@ -113,12 +112,6 @@ const collections = [
     description: 'Step out in style with our curated heels.',
     image: arezzoImg,
     link: '/shop?cat=Heels'
-  },
-   {
-    name: 'Bags Collection',
-    description: 'Bags that blend style and functionality.',
-    image: baggImg,
-    link: '/shop?cat=Bags'
   }
 ]
 
