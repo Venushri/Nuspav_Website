@@ -399,7 +399,7 @@ useEffect(() => {
                 onError={e => { e.target.onerror = null; e.target.src = placeholderImg }}
               />
               <h3 className="text-lg font-semibold mb-1 text-center">{product.name}</h3>
-              <p className="text-gray-600 mb-2">₹{product.price}</p>
+              <p className="text-gray-600 mb-2">${product.price}</p>
               <div className="flex gap-4 mb-2 bg-purple-100 rounded-lg p-2">
                 <button
                   title="Add to Wishlist"
@@ -469,7 +469,7 @@ useEffect(() => {
               onError={e => { e.target.onerror = null; e.target.src = placeholderImg }}
             />
             <h3 className="text-2xl font-bold mb-2 text-center text-black">{selectedProduct.name}</h3>
-            <p className="mb-2 text-center text-black">₹{selectedProduct.price}</p>
+            <p className="mb-2 text-center text-black">${selectedProduct.price}</p>
             <div className="flex gap-4 mb-2 justify-center bg-purple-100 rounded-lg p-2">
               <button
                 title="Add to Wishlist"
