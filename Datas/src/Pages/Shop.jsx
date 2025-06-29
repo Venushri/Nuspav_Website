@@ -66,6 +66,7 @@ import jewellery2Img from '../assets/jewellery2.jpg'
 import sunglasses1Img from '../assets/sunglasses1.jpg'
 import sunglasses2Img from '../assets/sunglasses2.jpg'
 import sunglasses3Img from '../assets/sunglasses3.jpg'
+import { useCart } from '../Context/CartContext'; 
 
 const placeholderImg = "https://via.placeholder.com/300x300?text=No+Image"
 
