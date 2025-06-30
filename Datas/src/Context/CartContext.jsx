@@ -37,7 +37,6 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // 🛠 Add all functions here!
   const value = {
     cartItems,
     addToCart,
