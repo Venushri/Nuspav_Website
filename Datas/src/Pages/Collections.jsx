@@ -184,7 +184,7 @@ const boxTitleStyle = "text-xl font-bold mb-2";
 
 const Collections = () => {
   const flipBookRef = useRef(null);
-  const directionRef = useRef(1); // Start with 1 for left-to-right (forward)
+  const directionRef = useRef(1); 
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -294,8 +294,8 @@ const Collections = () => {
         <section
           style={{
             position: 'relative',
-            left: '20px', // move section a little to the right
-            width: 'calc(100% - 20px)', // compensate for right shift
+            left: '20px', 
+            width: 'calc(100% - 20px)', 
             background: 'linear-gradient(90deg, #fffbe7 60%, #ffe3ec 100%)',
             borderRadius: '22px',
             boxShadow: '0 4px 24px 0 rgba(200, 24, 91, 0.10)',
@@ -319,11 +319,11 @@ const Collections = () => {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
               marginBottom: '1.2rem',
-              textAlign: 'center', // center the heading
+              textAlign: 'center', 
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               width: '100%',
-              alignSelf: 'center', // center in flex
+              alignSelf: 'center', 
             }}
           >
             Style Your Look

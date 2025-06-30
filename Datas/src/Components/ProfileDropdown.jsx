@@ -6,7 +6,6 @@ const ProfileDropdown = () => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -45,7 +44,7 @@ const ProfileDropdown = () => {
       ></i>
 
       {open && (
-        <div className="absolute right-0 mt-3 w-64 bg-white shadow-2xl rounded-md border z-50">
+        <div className="absolute right-0 mt-3 w-64 bg-white shadow-2xl rounded-md border z-50 text-gray-800">
           {/* Top Section */}
           <div className="px-4 py-3 border-b">
             <p className="text-sm font-semibold">Welcome</p>
@@ -59,15 +58,10 @@ const ProfileDropdown = () => {
           </div>
 
           {/* Links Section */}
-          <ul className="text-sm py-2">
+          <ul className="text-sm py-2 text-gray-800">
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/coming-soon')}>My Profile</li>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/coming-soon')}>Orders</li>
-            <li
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-              onClick={() => handleLinkClick('/wishlist')}
-            >
-              Wishlist
-            </li>
+            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/wishlist')}>Wishlist</li>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/coming-soon')}>Gift Cards</li>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/coming-soon')}>Coupons</li>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLinkClick('/coming-soon')}>Saved Addresses</li>
