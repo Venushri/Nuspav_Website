@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import HelpSidebar from '../Components/HelpSidebar';
-//import HelpContent from '../Components/HelpContent';
+// import HelpContent from '../Components/HelpContent';
 import { useAuth } from '../Context/AuthContext';
-//import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import { Info, LogIn, PhoneCall } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'; 
+
 const Contact = () => {
   const [selected, setSelected] = useState('order');
   const { isAuthenticated } = useAuth();
@@ -63,7 +64,7 @@ const Contact = () => {
                   </p>
                   <button
                     className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-black font-semibold py-2 px-6 rounded-lg shadow"
-                    onClick={() => navigate('/login')} // <-- Add this handler
+                    onClick={() => navigate('/login')} 
                   >
                     <LogIn className="w-5 h-5" />
                     LOG IN

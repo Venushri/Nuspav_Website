@@ -15,5 +15,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// ✅ This is what was missing
 export const useAuth = () => useContext(AuthContext);
