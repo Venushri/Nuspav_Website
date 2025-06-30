@@ -31,6 +31,7 @@ const categories = [
   { name: 'Summer Collection', link: '/shop?cat=Summer' },
   { name: 'Autumn Collection', link: '/shop?cat=Autumn' },
   { name: 'Winter Collection', link: '/shop?cat=Winter' },
+  { name: 'Bags Collection', link: '/shop?cat=Bags' },
   { name: 'Shoes', link: '/shop?cat=Shoes' },
   { name: 'Shirts', link: '/shop?cat=Shirts' },
   { name: 'T-Shirts', link: '/shop?cat=T-Shirts' },
@@ -112,6 +113,12 @@ const collections = [
     description: 'Step out in style with our curated heels.',
     image: arezzoImg,
     link: '/shop?cat=Heels'
+  },
+   {
+    name: 'Bags Collection',
+    description: 'Bags that blend style and functionality.',
+    image: baggImg,
+    link: '/shop?cat=Bags'
   }
 ]
 
@@ -177,7 +184,8 @@ const boxTitleStyle = "text-xl font-bold mb-2";
 
 const Collections = () => {
   const flipBookRef = useRef(null);
-  const directionRef = useRef(1); 
+  const directionRef = useRef(1);
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (flipBookRef.current) {
@@ -202,13 +210,12 @@ const Collections = () => {
   }, []);
 
   return (
-    <div className="w-full flex-1 bg-gray-50 py-12 flex flex-col items-center gap-8 px-8">
-      <div className="flex-1 flex flex-col items-center" style={{minHeight:'900px', justifyContent:'flex-start'}}>
-        <h2 className="text-4xl font-extrabold mb-10 text-center tracking-widest uppercase"
-          style={{ letterSpacing: '0.2em', color: '#ec4899' }}>
+    <div className="w-full flex-1 bg-gray-50 py-12 flex flex-col items-center gap-8 px-4 sm:px-6 lg:px-8">
+      <div className="flex-1 flex flex-col items-center w-full max-w-7xl">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-center tracking-widest uppercase text-pink-500">
           Our Collections
         </h2>
-        <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
           <div className={boxStyle}>
             <h3 className={`${boxTitleStyle} text-yellow-900`}>New Arrivals</h3>
             <p className="text-yellow-900 text-center">Check out the latest additions to our collection!</p>
@@ -222,143 +229,81 @@ const Collections = () => {
             <p className="text-yellow-900 text-center">See what's hot and popular among our shoppers!</p>
           </div>
         </div>
-        <HTMLFlipBook ref={flipBookRef} width={450} height={700} showCover={true} className="shadow-lg mb-12">
-          {collections.map((col, idx) =>
-            col.onlyImage ? (
-              <div key={idx} className="h-full p-0 flex flex-col items-center justify-center relative" style={{background:'#fff'}}>
-                <img
-                  src={col.image}
-                  alt={col.coverTitle || ''}
-                  className="object-cover"
-                  style={{ height: '100%', width: '100%', objectFit: 'cover' }}
-                />
-                {col.coverTitle && (
-                  <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    color: '#fff',
-                    fontSize: '2.8rem',
-                    fontWeight: 'bold',
-                    letterSpacing: '0.15em',
-                    textShadow: '0 4px 24px rgba(0,0,0,0.35)',
-                    background: 'rgba(0,0,0,0.18)',
-                    padding: '0.5em 1.5em',
-                    borderRadius: '18px',
-                    fontFamily: 'Times New Roman, Times, serif',
-                    zIndex: 2
-                  }}>
-                    {col.coverTitle}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div key={col.name || idx} className="h-full bg-white p-8 flex flex-col justify-between">
-                <div className="flex justify-center items-center" style={{ height: '45%' }}>
+
+        <div className="w-full max-w-4xl mb-12">
+          <HTMLFlipBook
+            ref={flipBookRef}
+            width={300}
+            height={450}
+            showCover={true}
+            className="shadow-lg mx-auto"
+            size="stretch"
+            mobileScrollSupport={true}
+          >
+            {collections.map((col, idx) =>
+              col.onlyImage ? (
+                <div
+                  key={idx}
+                  className="h-full flex flex-col items-center justify-center relative bg-white"
+                >
                   <img
                     src={col.image}
-                    alt={col.name}
-                    className="object-contain"
-                    style={{ maxHeight: '100%', width: '100%' }}
+                    alt={col.coverTitle || ''}
+                    className="w-full h-full object-cover"
                   />
-                </div>
-                {col.title && <div style={gradientTextStyle}>{col.title}</div>}
-                <div className="text-center">
-                  <h2 className="text-xl font-bold mb-1">{col.name}</h2>
-                  <p className="text-sm text-gray-700 mb-3">{col.description}</p>
-                  {col.link && (
-                    <Link
-                      to={col.link}
-                      className="bg-black text-white px-3 py-1 rounded text-sm hover:bg-gray-800 transition"
-                    >
-                      Shop Now →
-                    </Link>
+                  {col.coverTitle && (
+                    <div className="absolute text-white text-2xl font-bold text-center bg-black/40 px-4 py-2 rounded">
+                      {col.coverTitle}
+                    </div>
                   )}
                 </div>
-              </div>
-            )
-          )}
-        </HTMLFlipBook>
-        <div style={{height:'40px'}}></div>
-        {/* Style Your Look section below flipbook and categories */}
-        <div style={{ height: '40px' }}></div>
-        <section
-          style={{
-            position: 'relative',
-            left: '20px', 
-            width: 'calc(100% - 20px)', 
-            background: 'linear-gradient(90deg, #fffbe7 60%, #ffe3ec 100%)',
-            borderRadius: '22px',
-            boxShadow: '0 4px 24px 0 rgba(200, 24, 91, 0.10)',
-            padding: '32px 18px 28px 18px',
-            margin: '0 0 32px 0',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            minWidth: '0',
-            maxWidth: '1300px',
-          }}
-        >
-          <h3
-            style={{
-              fontFamily: 'Times New Roman, Times, serif',
-              fontSize: '2.1rem',
-              fontWeight: 'bold',
-              background: 'linear-gradient(90deg, #c2185b 40%, #006400 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              marginBottom: '1.2rem',
-              textAlign: 'center', 
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              width: '100%',
-              alignSelf: 'center', 
-            }}
-          >
+              ) : (
+                <div key={idx} className="h-full bg-white p-4 flex flex-col justify-between">
+                  <div className="flex justify-center items-center h-1/2">
+                    <img
+                      src={col.image}
+                      alt={col.name}
+                      className="max-h-full w-full object-contain"
+                    />
+                  </div>
+                  <div className="text-center mt-4">
+                    <h2 className="text-lg font-bold mb-1">{col.name}</h2>
+                    <p className="text-sm text-gray-700 mb-3">{col.description}</p>
+                    {col.link && (
+                      <Link
+                        to={col.link}
+                        className="bg-black text-white px-3 py-1 rounded text-sm hover:bg-gray-800 transition"
+                      >
+                        Shop Now →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              )
+            )}
+          </HTMLFlipBook>
+        </div>
+
+        <section className="w-full max-w-7xl bg-gradient-to-r from-yellow-50 via-pink-50 to-white rounded-2xl shadow-md p-6">
+          <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-pink-700 to-green-700 bg-clip-text text-transparent mb-6 text-center uppercase tracking-wide">
             Style Your Look
           </h3>
-          <div
-            className="flex flex-row gap-4 items-stretch flex-nowrap"
-            style={{
-              width: '100%',
-              flexWrap: 'nowrap',
-              justifyContent: 'flex-start',
-              alignSelf: 'flex-start',
-              overflow: 'visible',
-              maxWidth: '1300px',
-              paddingBottom: '0',
-            }}
-          >
+          <div className="flex gap-4 overflow-x-auto scrollbar-hide">
             {addOns.map(item => (
               <div
                 key={item.title}
-                className="bg-white rounded-xl shadow p-4 flex flex-col items-center justify-between"
-                style={{
-                  minWidth: '140px',
-                  maxWidth: '150px',
-                  height: '230px',
-                  flex: '1 1 0',
-                  margin: '0 8px 0 0',
-                  boxSizing: 'border-box',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                }}
+                className="flex-shrink-0 bg-white rounded-xl shadow p-4 w-40 sm:w-48 flex flex-col items-center justify-between"
               >
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="object-cover rounded mb-2"
-                  style={{ objectFit: 'cover', width: '90px', height: '90px' }}
+                  className="object-cover rounded mb-2 w-20 h-20"
                 />
-                <h4 className="font-bold text-base mb-1 text-center" style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'100%'}}>{item.title}</h4>
-                <p className="text-sm text-gray-600 mb-2 text-center" style={{overflow:'hidden',textOverflow:'ellipsis',display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',maxWidth:'100%'}}>{item.description}</p>
+                <h4 className="font-bold text-base mb-1 text-center truncate w-full">{item.title}</h4>
+                <p className="text-sm text-gray-600 mb-2 text-center line-clamp-2">{item.description}</p>
                 <Link
                   to={item.link}
-                  className="bg-black text-white px-3 py-1 text-sm rounded hover:bg-gray-800"
-                  style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis',width:'100%',textAlign:'center'}}
+                  className="bg-black text-white px-3 py-1 text-sm rounded hover:bg-gray-800 w-full text-center truncate"
                 >
                   Explore →
                 </Link>
@@ -368,7 +313,7 @@ const Collections = () => {
         </section>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Collections
+export default Collections;
